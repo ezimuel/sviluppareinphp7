@@ -1,0 +1,25 @@
+server {
+    listen 80;
+
+    root /var/vhosts/example.com;
+
+    index index.php index.html index.htm;
+
+    server_name example.com www.example.com;
+
+    location / {
+        try_files $uri $uri/ =404;
+    }
+
+    location ~ \.php$ {
+        include snippets/fastcgi-php.conf;
+        fastcgi_pass unix:/run/php/php7.0-fpm.sock;
+    }
+
+    access_log /var/log/nginx/example.com-access.log;
+    error_log /var/log/nginx/example.com-error.log;
+
+    location ~ /\.ht {
+        deny all;
+    }
+}

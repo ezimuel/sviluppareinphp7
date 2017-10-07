@@ -1,0 +1,17 @@
+<VirtualHost *:80>
+    ServerName example.com
+
+    ServerAlias www.example.com
+
+    DocumentRoot /var/vhosts/example.com
+    php_admin_value open_basedir /var/vhosts/example.com
+
+    <Directory /var/vhosts/example.com>
+        Options -Indexes +FollowSymLinks +MultiViews
+        AllowOverride All
+        Require all granted
+    </Directory>
+
+    CustomLog /var/log/httpd/example.com-access.log common
+    ErrorLog /var/log/httpd/example.com-error.log
+</VirtualHost>

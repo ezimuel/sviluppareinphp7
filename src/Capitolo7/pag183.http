@@ -1,0 +1,15 @@
+HTTP/1.1 200 OK
+Connection: close
+Content-type: text/html; charset=UTF-8
+Date: Tue, 13 Jun 2017 22:18:25 +0200
+Host: localhost:8080
+X-Powered-By: PHP/7.1.6-1~ubuntu17.04.1+deb.sury.org+1
+
+<html>
+    <head>
+        <title>Test</title>
+    </head>
+<body>
+    <h1>Test page on date 2017-06-13</h1>
+</body>
+</html>

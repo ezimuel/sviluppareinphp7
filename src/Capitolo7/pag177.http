@@ -1,0 +1,6 @@
+GET / HTTP/1.1
+Accept: */*
+Accept-Encoding: gzip, deflate
+Connection: keep-alive
+Host: www.google.com
+User-Agent: Mozilla/5.0 (X11; Linux x86_64)

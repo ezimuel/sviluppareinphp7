@@ -1,0 +1,13 @@
+PUT / HTTP/1.1
+Accept: application/json, */*
+Accept-Encoding: gzip, deflate
+Connection: keep-alive
+Content-Length: 18
+Content-Type: application/json
+Host: localhost:8080
+User-Agent: HTTPie/0.9.8
+
+{
+"name": "Enrico",
+"surname": "Zimuel"
+}

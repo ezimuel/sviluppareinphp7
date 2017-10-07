@@ -1,0 +1,10 @@
+GET / HTTP/1.1
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Encoding: gzip, deflate
+Accept-Language: en-US,en;q=0.5
+Connection: keep-alive
+Cookie: _ga=GA1.1.1138562936.1486050910; cookiescriptaccept=visit
+Host: localhost:8080
+Upgrade-Insecure-Requests: 1
+User-Agent: Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:53.0) Gecko/20100101
+Firefox/53.0
