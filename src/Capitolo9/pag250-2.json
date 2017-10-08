@@ -1,0 +1,22 @@
+{
+    "_links": {
+        "self": {
+            "href": "http://example.com/speakers/ezimuel"
+        }
+    },
+    "_embedded": {
+        "talks": [
+            {
+                "_links": {
+                    "self": {
+                        "href": "http://example.com/talks/1"
+                    }
+                },
+                "id": "1",
+                "title": "The new features of PHP 7"
+            }
+        ]
+    },
+    "id": "ezimuel",
+    "name": "Enrico Zimuel"
+}

@@ -1,0 +1,9 @@
+{
+    "_links": {
+        "self": {
+            "href": "http://example.com/speakers/ezimuel"
+        }
+    },
+    "id": "ezimuel",
+    "name": "Enrico Zimuel"
+}

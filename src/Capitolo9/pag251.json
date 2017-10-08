@@ -1,0 +1,52 @@
+{
+    "_links": {
+        "self": {
+            "href": "http://example.com/speakers?page=3"
+        },
+        "next": {
+            "href": "http://example.com/speakers?page=4"
+        },
+        "prev": {
+            "href": "http://example.com/speakers?page=2"
+        },
+        "first": {
+            "href": "http://example.com/speakers"
+        },
+        "last": {
+            "href": "http://example.com/speakers?page=10"
+        }
+    },
+    "count": 3,
+    "total": 29,
+    "_embedded": {
+        "speakers": [
+            {
+                "_links": {
+                    "self": {
+                        "href": "http://example.com/speakers/ezimuel"
+                    }
+                },
+                "id": "ezimuel",
+                "name": "Enrico Zimuel"
+            },
+            {
+                "_links": {
+                    "self": {
+                        "href": "http://example.com/speakers/azimuel"
+                    }
+                },
+                "id": "azimuel",
+                "name": "Alberto Zimuel"
+            },
+            {
+                "_links": {
+                    "self": {
+                        "href": "http://example.com/speakers/vpeter"
+                    }
+                },
+                "id": "vpeter",
+                "name": "Valentina Peter"
+            }
+        ]
+    }
+}

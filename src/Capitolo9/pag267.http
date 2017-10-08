@@ -1,0 +1,10 @@
+POST /oauth HTTP/1.1
+Accept: application/json
+Authorization: Basic dGVzdGNsaWVudDp0ZXN0cGFzcw==
+Content-Type: application/json
+
+{
+    "grant_type": "password",
+    "username": "testuser",
+    "password": "testpass"
+}
