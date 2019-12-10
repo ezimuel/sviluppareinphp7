@@ -1,13 +1,30 @@
 <?php
 /**
- * Codice sorgente riportato nel libro "Sviluppare in PHP 7" di Enrico Zimuel
- * Tecniche Nuove editore, 2017, ISBN 978-88-481-3120-9
+ * Codice sorgente riportato nella II edizione del libro "Sviluppare in PHP 7" di Enrico Zimuel
+ * Tecniche Nuove editore, 2019, ISBN 978-88-481-4031-7
  * @see http://www.sviluppareinphp7.it
  */
 
-$company = "Zend Technologies";
-$speakers = $em->getRepository("Speaker")->findBy(["company" => $company]);
-printf("Speakers working for %s:\n", $company);
-foreach ($speakers as $speaker) {
-    printf("%s with ID %d\n", $speaker->getName(), $speaker->getId());
+/**
+ * @Entity @Table(name="speakers")
+ */
+class Speaker
+{
+    // ...
+    public function __construct() {
+        $this->talks = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+    // ...
+}
+
+/**
+ * @Entity @Table(name="talks")
+ */
+class Talk
+{
+    // ...
+    public function __construct() {
+        $this->speakers = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+    // ...
 }

@@ -1,20 +1,42 @@
 <?php
 /**
- * Codice sorgente riportato nel libro "Sviluppare in PHP 7" di Enrico Zimuel
- * Tecniche Nuove editore, 2017, ISBN 978-88-481-3120-9
+ * Codice sorgente riportato nella II edizione del libro "Sviluppare in PHP 7" di Enrico Zimuel
+ * Tecniche Nuove editore, 2019, ISBN 978-88-481-4031-7
  * @see http://www.sviluppareinphp7.it
  */
 
-// Generate public and private keys
-$keys = openssl_pkey_new(array(
-    "private_key_bits" => 4096,
-    "private_key_type" => OPENSSL_KEYTYPE_RSA,
-));
+function encrypt(string $data, string $key): string
+{
+    if (32 !== strlen($key)) {
+        throw new RuntimeException('The key size must be 32 bytes');
+    }
+    $iv = random_bytes(12);
+    $ciphertext = openssl_encrypt(
+        $data,
+        'aes-256-gcm',
+        $key,
+        OPENSSL_RAW_DATA,
+        $iv,
+        $tag
+    );
+    return $iv . $tag . $ciphertext;
+}
 
-// Store the private key in an encrypted file
-$passphrase = 'test';
-openssl_pkey_export_to_file($keys, 'private.pem', $passphrase);
-// Store the public key in a file
-$details = openssl_pkey_get_details($keys);
-$publicKey = $details['key'];
-file_put_contents('public.key', $publicKey);
+function decrypt(string $data, string $key): string
+{
+    if (32 !== strlen($key)) {
+        throw new RuntimeException('The key size must be 32 bytes');
+    }
+    $decrypt = openssl_decrypt(
+        mb_substr($data, 28, null, '8bit'),
+        'aes-256-gcm',
+        $key,
+        OPENSSL_RAW_DATA,
+        mb_substr($data, 0, 12, '8bit'),
+        mb_substr($data, 12, 16, '8bit')
+    );
+    if (false === $decrypt) {
+        throw new RuntimeException('Authentication error!');
+    }
+    return $decrypt;
+}

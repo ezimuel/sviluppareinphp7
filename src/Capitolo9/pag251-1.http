@@ -1,0 +1,7 @@
+POST /speakers HTTP/1.1
+Accept: application/json
+Content-Type: application/json
+
+{
+    "name": "Enrico Zimuel"
+}

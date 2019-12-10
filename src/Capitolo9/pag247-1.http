@@ -1,7 +1,10 @@
-POST /speakers HTTP/1.1
-Accept: application/json
+HTTP/1.1 200 OK
 Content-Type: application/json
 
-{
-    "name": "Enrico Zimuel"
-}
+[
+    {
+        "id": "f81d4fae-7dec-11d0-a765-00a0c91e6bf6",
+        "lastName": "Zimuel",
+        "firstName": "Enrico"
+    }
+]

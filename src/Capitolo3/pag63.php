@@ -1,25 +1,27 @@
 <?php
 /**
- * Codice sorgente riportato nel libro "Sviluppare in PHP 7" di Enrico Zimuel
- * Tecniche Nuove editore, 2017, ISBN 978-88-481-3120-9
+ * Codice sorgente riportato nella II edizione del libro "Sviluppare in PHP 7" di Enrico Zimuel
+ * Tecniche Nuove editore, 2019, ISBN 978-88-481-4031-7
  * @see http://www.sviluppareinphp7.it
  */
+require_once 'User.php';
 
-interface UserInterface
+class Developer extends User
 {
-    public function getName(): string;
-    public function setName(string $name);
-}
+    protected $github = '';
 
-class User implements UserInterface
-{
-    protected $name = '';
-
-    public function getName() : string {
-        return $this->name;
+    public function __construct(string $name, string $github) {
+        $this->github = $github;
+        parent::__construct($name);
     }
 
-    public function setName(string $name) {
-	    $this->name = $name;
+    public function setGithub(string $github) {
+        $this->github = $github;
+    }
+
+    public function getGithub() : string {
+        return $this->github;
     }
 }
+
+$developer = new Developer('Enrico', 'ezimuel');

@@ -1,32 +1,20 @@
 <?php
 /**
- * Codice sorgente riportato nel libro "Sviluppare in PHP 7" di Enrico Zimuel
- * Tecniche Nuove editore, 2017, ISBN 978-88-481-3120-9
+ * Codice sorgente riportato nella II edizione del libro "Sviluppare in PHP 7" di Enrico Zimuel
+ * Tecniche Nuove editore, 2019, ISBN 978-88-481-4031-7
  * @see http://www.sviluppareinphp7.it
  */
 
- /**
-  * @Entity @Table(name="speakers")
-  */
- class Speaker
- {
-     // ...
-     public function addTalk(Talk $talk)
-     {
-         if ($this->talks->contains($talk)) {
-             return;
-         }
-         $this->talks->add($talk);
-         $talk->addSpeaker($this);
-     }
+ // boostrap.php
+ use Doctrine\ORM\Tools\Setup;
+ use Doctrine\ORM\EntityManager;
 
-     public function removeTalk(Talk $talk)
-     {
-         if (! $this->talks->contains($talk)) {
-             return;
-         }
-         $this->talks->removeElement($talk);
-         $talk->removeSpeaker($this);
-     }
-     // ...
- }
+ require_once "vendor/autoload.php";
+
+ $isDevMode = true;
+ $config = Setup::createAnnotationMetadataConfiguration(array(__DIR__."/src"),$isDevMode);
+ $conn = array(
+     'driver' => 'pdo_sqlite',
+     'path'   => __DIR__ . '/db.sqlite',
+ );
+ return EntityManager::create($conn, $config);

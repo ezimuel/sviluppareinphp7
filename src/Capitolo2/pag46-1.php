@@ -1,14 +1,16 @@
 <?php
 /**
- * Codice sorgente riportato nel libro "Sviluppare in PHP 7" di Enrico Zimuel
- * Tecniche Nuove editore, 2017, ISBN 978-88-481-3120-9
+ * Codice sorgente riportato nella II edizione del libro "Sviluppare in PHP 7" di Enrico Zimuel
+ * Tecniche Nuove editore, 2019, ISBN 978-88-481-4031-7
  * @see http://www.sviluppareinphp7.it
  */
 
-function hello(?string $name): ?string
+function fibonacci(int $n): int
 {
-    if (null === $name) {
-        return null;
+    $fib[0] = 0;
+    $fib[1] = 1;
+    for ($i=2; $i<=$n; $i++) {
+        $fib[$i] = $fib[$i-1] + $fib[$i-2];
     }
-    return 'Hello ' . $name;
+    return $fib[$n];
 }

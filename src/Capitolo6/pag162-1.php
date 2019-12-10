@@ -1,20 +1,19 @@
 <?php
 /**
- * Codice sorgente riportato nel libro "Sviluppare in PHP 7" di Enrico Zimuel
- * Tecniche Nuove editore, 2017, ISBN 978-88-481-3120-9
+ * Codice sorgente riportato nella II edizione del libro "Sviluppare in PHP 7" di Enrico Zimuel
+ * Tecniche Nuove editore, 2019, ISBN 978-88-481-4031-7
  * @see http://www.sviluppareinphp7.it
  */
 
-use MongoDB\Client;
+$em = require_once "bootstrap.php";
 
-$client = new Client("mongodb://localhost:27017");
-$collection = $client->demo->speakers;
-
-// find speakers working for Zend Technologies
-$cursor = $collection->find([ 'company' => 'Zend Technologies' ]);
-foreach ($cursor as $document) {
-    printf("Speaker: %s (_id %s)\n", $document->name, $document->_id);
-    foreach ($document->talks as $talk) {
-        printf("\tTalk title: %s\n", $talk->title);
-    }
+$speaker = $em->getRepository("Speaker")->findOneBy(["name" => "Enrico Zimuel"]);
+if (! $speaker) {
+    printf("The Speaker specified doesn't exist!");
+    exit(1);
 }
+
+$speaker->SetName("Alberto Zimuel");
+$em->persist($speaker);
+$em->flush();
+printf("Updated Speaker with ID %d\n", $speaker->getId());

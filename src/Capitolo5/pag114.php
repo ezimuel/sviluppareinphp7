@@ -1,28 +1,31 @@
 <?php
 /**
- * Codice sorgente riportato nel libro "Sviluppare in PHP 7" di Enrico Zimuel
- * Tecniche Nuove editore, 2017, ISBN 978-88-481-3120-9
+ * Codice sorgente riportato nella II edizione del libro "Sviluppare in PHP 7" di Enrico Zimuel
+ * Tecniche Nuove editore, 2019, ISBN 978-88-481-4031-7
  * @see http://www.sviluppareinphp7.it
  */
 
+namespace AppTest;
+
 use PHPUnit\Framework\TestCase;
+use App\Filter;
 
-/**
-* @codeCoverageIgnore
-*/
-class Foo
+class FilterTest extends TestCase
 {
-    public function bar()
+    protected $filter;
+
+    public function setUp()
     {
+        $this->filter = new Filter();
     }
-}
 
-class Bar
-{
-    /**
-    * @codeCoverageIgnore
-    */
-    public function foo()
+    public function testValidEmail()
     {
+        $this->assertTrue($this->filter->isEmail('foo@bar.com'));
+    }
+
+    public function testInvalidEmail()
+    {
+        $this->assertFalse($this->filter->isEmail('foo'));
     }
 }

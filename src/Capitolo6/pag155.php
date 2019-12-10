@@ -1,19 +1,33 @@
 <?php
 /**
- * Codice sorgente riportato nel libro "Sviluppare in PHP 7" di Enrico Zimuel
- * Tecniche Nuove editore, 2017, ISBN 978-88-481-3120-9
+ * Codice sorgente riportato nella II edizione del libro "Sviluppare in PHP 7" di Enrico Zimuel
+ * Tecniche Nuove editore, 2019, ISBN 978-88-481-4031-7
  * @see http://www.sviluppareinphp7.it
  */
 
-$em = require_once "bootstrap.php";
+/**
+ * @Entity @Table(name="speakers")
+ */
+class Speaker
+{
+    /**
+     * @ManyToMany(targetEntity="Talk", inversedBy="speakers", cascade={"persist","remove"})
+     * @JoinTable(name="speakers_talks")
+     */
+    private $talks;
 
-$speaker = new Speaker();
-$speaker->setName("Enrico Zimuel");
-$speaker->setTitle("Senior Software Engineer");
-$speaker->setCompany("Zend Technologies");
-$speaker->setUrl("http://www.zimuel.it");
-$speaker->setTwitter("@ezimuel");
+    // ...
+}
 
-$em->persist($speaker);
-$em->flush();
-printf ("Added Speaker with Id %d\n", $speaker->getId());
+/**
+ * @Entity @Table(name="talks")
+ */
+class Talk
+{
+    /**
+     * @ManyToMany(targetEntity="Speaker", mappedBy="talks", cascade={"persist","remove"})
+     */
+    private $speakers;
+    
+    // ...
+}

@@ -1,18 +1,19 @@
 <?php
 /**
- * Codice sorgente riportato nel libro "Sviluppare in PHP 7" di Enrico Zimuel
- * Tecniche Nuove editore, 2017, ISBN 978-88-481-3120-9
+ * Codice sorgente riportato nella II edizione del libro "Sviluppare in PHP 7" di Enrico Zimuel
+ * Tecniche Nuove editore, 2019, ISBN 978-88-481-4031-7
  * @see http://www.sviluppareinphp7.it
  */
 
-use MongoDB\Client;
+$em = require_once "bootstrap.php";
 
-$client = new Client("mongodb://localhost:27017");
-$collection = $client->demo->speakers;
-$updateResult = $collection->updateOne(
-    [ 'name' => 'Enrico Zimuel'],
-    [ '$set' => [ 'name' => 'Alberto Zimuel' ]]
-);
+$id = 1;
+$speaker = $em->find("Speaker", $id);
+if (! $speaker) {
+    printf("No speaker found with ID %d\n", $id);
+    exit(1);
+}
 
-printf("Matched %d document(s)\n", $updateResult->getMatchedCount());
-printf("Modified %d document(s)\n", $updateResult->getModifiedCount());
+$em->remove($speaker);
+$em->flush();
+printf("Removed Speaker with ID %d\n", $id);

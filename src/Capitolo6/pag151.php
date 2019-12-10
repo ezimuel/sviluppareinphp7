@@ -1,33 +1,46 @@
 <?php
 /**
- * Codice sorgente riportato nel libro "Sviluppare in PHP 7" di Enrico Zimuel
- * Tecniche Nuove editore, 2017, ISBN 978-88-481-3120-9
+ * Codice sorgente riportato nella II edizione del libro "Sviluppare in PHP 7" di Enrico Zimuel
+ * Tecniche Nuove editore, 2019, ISBN 978-88-481-4031-7
  * @see http://www.sviluppareinphp7.it
  */
 
-/**
- * @Entity @Table(name="speakers")
- */
 class Speaker
 {
-    /**
-     * @ManyToMany(targetEntity="Talk", inversedBy="speakers", cascade={"persist","remove"})
-     * @JoinTable(name="speakers_talks")
-     */
-    private $talks;
+    protected $id;
+    protected $name;
 
+    // ...
+    public function getId() {
+        return $this->id;
+    }
+
+    public function getName() {
+        return $this->name;
+    }
+
+    public function setName($name) {
+        $this->name = $name;
+    }
     // ...
 }
 
-/**
- * @Entity @Table(name="talks")
- */
 class Talk
 {
-    /**
-     * @ManyToMany(targetEntity="Speaker", mappedBy="talks", cascade={"persist","remove"})
-     */
-    private $speakers;
-    
+    protected $id;
+    protected $name;
+
+    // ...
+    public function getId() {
+        return $this->id;
+    }
+
+    public function getName() {
+        return $this->name;
+    }
+
+    public function setName($name) {
+        $this->name = $name;
+    }
     // ...
 }

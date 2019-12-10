@@ -1,19 +1,34 @@
 <?php
 /**
- * Codice sorgente riportato nel libro "Sviluppare in PHP 7" di Enrico Zimuel
- * Tecniche Nuove editore, 2017, ISBN 978-88-481-3120-9
+ * Codice sorgente riportato nella II edizione del libro "Sviluppare in PHP 7" di Enrico Zimuel
+ * Tecniche Nuove editore, 2019, ISBN 978-88-481-4031-7
  * @see http://www.sviluppareinphp7.it
  */
 
-chdir(dirname(__DIR__));
-require 'vendor/autoload.php';
+namespace App\Action;
 
-call_user_func(function () {
-    $container = require 'config/container.php';
-    $app = $container->get(\Zend\Expressive\Application::class);
+use Interop\Http\ServerMiddleware\DelegateInterface;
+use Interop\Http\ServerMiddleware\MiddlewareInterface as ServerMiddlewareInterface;
+use Psr\Http\Message\ServerRequestInterface;
+use Zend\Diactoros\Response\HtmlResponse;
+use Zend\Expressive\Router\RouterInterface;
+use Zend\Expressive\Template\TemplateRendererInterface;
 
-    require 'config/pipeline.php';
-    require 'config/routes.php';
+class HomePageAction implements ServerMiddlewareInterface
+{
+    private $router;
 
-    $app->run();
-});
+    private $template;
+
+    public function __construct(RouterInterface $router, TemplateRendererInterface $template)
+    {
+        $this->router = $router;
+        $this->template = $template;
+    }
+
+    public function process(ServerRequestInterface $request, DelegateInterface $delegate)
+    {
+        // populate $data
+        return new HtmlResponse($this->template->render('app::home-page',$data));
+    }
+}

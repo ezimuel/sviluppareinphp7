@@ -1,8 +1,10 @@
-HTTP/1.1 201 Created
-Content-Type: application/json
-Location: /speakers/ezimuel
+HTTP/1.1 400 Bad Request
+Content-Type: application/problem+json
+Content-Language: en
 
 {
-    "id": "ezimuel",
-    "name": "Enrico Zimuel"
+    "type": "https://example.net/validation-error",
+    "title": "Your request parameters didn't validate.",
+    "status": 400,
+    "detail": "The age must be a positive integer"
 }
